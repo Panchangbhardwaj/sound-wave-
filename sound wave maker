@@ -1,0 +1,131 @@
+/**
+ * @name Mic Threshold
+ * @description <p>Trigger an event (draw a rectangle) when the Audio Input
+ * volume surpasses a threshold.</p>
+ * <p><em><span class="small"> To run this example locally, you will need the
+ * <a href="http://p5js.org/reference/#/libraries/p5.sound">p5.sound library</a>
+ * and a running <a href="https://github.com/processing/p5.js/wiki/Local-server">local server</a>.</span></em></p>
+ */
+// Adapted from Learning Processing, Daniel Shiffman
+// learningprocessing.com
+let input;
+let analyzer;
+let x=0;
+
+function setup() {
+  createCanvas(10000,500);
+ // background(255);
+
+  // Create an Audio input
+  input = new p5.AudioIn();
+
+  input.start();
+}
+
+function draw() {
+  // Get the overall volume (between 0 and 1.0)
+  let volume = input.getLevel();
+ // mousePressed();
+  // If the volume > 0.1,  a rect is drawn at a random location.
+  // The louder the volume, the larger the rectangle.
+  let threshold = 0.001;
+  if (volume > threshold) {
+    stroke(0);
+    fill(0, 100);
+    //rect(random(40, width), random(height), volume * 400, volume * 400);
+  }
+
+  // Graph the overall potential volume, w/ a line at the threshold
+  let y = map(volume*20, 0, 1, 200, 0);
+  let ythreshold = map(threshold, 0, 1, height, 0);
+
+  noStroke();
+  fill(175);
+ // rect(0, 0, 40, height);
+  // Then draw a rectangle on the graph, sized according to volume
+  fill(0);
+  //rect(0, y, 40, y);
+  stroke(0);
+  line(10, ythreshold, 19, ythreshold);
+  fill(random(300),random(300),random(300));
+  noStroke();
+/*  ellipse(370,270,y,y);
+  fill(200,100,30);
+  ellipse(370,270,y%30,y);
+  fill(200,100,30);
+  ellipse(370,270,y,y%30);
+//rotate(y/10);
+  fill(random(300),0,0);
+  noStroke();
+  ellipse(150,130,y,y);
+  fill(200,100,30);
+  ellipse(150,130,y%30,y);
+  fill(200,100,30);
+  ellipse(150,130,y,y%30);
+ 
+   fill(0,random(300),0);
+  noStroke();
+  ellipse(150,370,y,y);
+  fill(200,100,30);
+  ellipse(150,370,y%30,y);
+  fill(200,100,30);
+  ellipse(150,370,y,y%30);
+ 
+ 
+  fill(0,0,random(300));
+  noStroke();
+  ellipse(590,130,y,y);
+  fill(200,100,30);
+  ellipse(590,130,y%30,y);
+  fill(200,100,30);
+  ellipse(590,130,y,y%30);
+ 
+  fill(0,random(300),random(300));
+  noStroke();
+  ellipse(590,370,y,y);
+  fill(200,100,30);
+  ellipse(590,370,y%30,y);
+  fill(200,100,30);
+  ellipse(590,370,y,y%30);
+  *///frameRate(20);
+ //if(x<=700)
+ //{
+  x=x+0.5;
+  
+  //  noStroke();
+    fill(0,0,random(200,300))
+    //fill(random(100),random(300),random(100));
+    x=x+.0001;
+    let am=y;
+ //   let l=(am*sin(((2*PI)*(x-10))/100));
+  
+    
+       ellipseMode(CENTER);
+    ellipse(x,am+100,1,20);
+  let t;
+  t=350-y;
+    ellipse(x,t+100,1,20);
+  //line(50,10,10,10)
+ 
+/*  else
+  {
+   x=x-0.5;
+  
+    noStroke();
+    
+    fill(random(100),random(300),random(100));
+    x=x+0.5;
+    let am=y;
+    let l=((am/10)*sin(((2*PI)*(x-10))/100));
+  
+    
+       
+   // ellipse(x,l+200,random(200,300),random(200));
+  
+  
+  } */ console.log(y);
+}
+function mousePressed()
+{
+background(300,0,0);
+}
